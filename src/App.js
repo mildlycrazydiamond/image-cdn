@@ -110,11 +110,17 @@ const kelvinTable = {
 function App() {
   const [val, setVal] = useState(50);
   const [brightness, setBrightness] = useState(100);
+  const [contrast, setContrast] = useState(100);
   const appRef = useRef();
 
   return (
     <div className="App" ref={appRef}>
-      <Stack style={{ margin: '32px', alignContent: 'center' }}>
+      <Stack style={{
+        marginLeft: '32px',
+        marginRight: '32px',
+        marginTop: '160px',
+        alignContent: 'center'
+      }}>
         <p>
           Color Temperature
         </p>
@@ -137,9 +143,11 @@ function App() {
         </Stack>
       </Stack>
 
-      <Stack style={{ margin: '32px', alignContent: 'center' }}>
+      <Stack style={{
+        marginLeft: '32px'
+      }}>
         <p>
-          Luminance
+          Brightness
         </p>
         <Stack spacing={2} direction="row">
           <p>50%</p>
@@ -152,6 +160,26 @@ function App() {
               setBrightness(value);
 
               appRef.current.style.filter = "brightness(" + value + "%)";
+            }} />
+          <p>150%</p>
+        </Stack>
+      </Stack>
+
+      <Stack style={{ margin: '32px', alignContent: 'center' }}>
+        <p>
+          Contrast
+        </p>
+        <Stack spacing={2} direction="row">
+          <p>50%</p>
+          <Slider
+            step={1}
+            min={50}
+            max={150}
+            defaultValue={100}
+            value={contrast} onChange={(_event, value) => {
+              setContrast(value);
+
+              appRef.current.style.filter = "contrast(" + value + "%)";
             }} />
           <p>150%</p>
         </Stack>
